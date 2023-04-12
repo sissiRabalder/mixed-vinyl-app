@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+ {% block body %}
+	
+	 <h1>{{ title }}</h1>
+	 <div>Our sweet track list: TODO</div>
+	 <div class="container">
+		 <ul>
+			 {% for track in tracks %}
+				 <li>{{ track }}</li>
+			 {% endfor %}
+		 </ul>
+		 <ul>
+			 {% for song in songs %}
+				 <li>{{ song.artist }}: {{ song.song }}</li>
+			 {% endfor %}
+		 </ul>
+	 </div>
+
+ {% endblock %}
