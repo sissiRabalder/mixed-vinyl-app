@@ -1,5 +1,12 @@
+
 {% extends 'base.html.twig' %}
- {% block body %}
+{# nach extends immer block und endblock angeben sonst wird ein error ausgegekben #}
+{#
+{% block irgendeinname %}
+ kann auch angegeben werden, es muss dafür aber auch das selbe in der extends template stehen. Ansonsten scheint der Block nicht auf
+#}
+
+ {% block content %}
 	
 	 <h1>{{ title }}</h1>
 	 <div>Our sweet track list: TODO</div>
