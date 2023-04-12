@@ -19,11 +19,11 @@ use function Symfony\Component\String\u;
 	{
 		
 		//Route definiert die URL
-		#[Route('/')]
+/*		#[Route('/')]
 		public function simple(): Response
 		{
 			return new Response('Title: PB and Jams');
-		}
+		}*/
 		
 		// wir wollen eine flexible Route z.B.: eine Route für Techno: /browse/techno, Metal browse/metal, .. usw
 		//dafür wollen wir natürlich nicht immer eine einzelne Route eingaben deswegen arbeiten wir mit Variablen
@@ -37,24 +37,26 @@ use function Symfony\Component\String\u;
 		}
 		
 		//browse beispiel erweitert:
-		#[Route('/genres/{genre}')]
+		#[Route('/genres/{genre}', name: 'app_browse')]
 		// warum = null? Damit wenn nur /genres eingetippt ohne /.... wird kein Fehler ausgegeben wird, da ansonsten ein Parameter erwartet wird.
 		// Mit null ist er standartmäßig null wenn nichts eingegeben wird und man landet auf der /genres Page
 		public function genres($genre = null): Response
 		{
 			// damit nicht bei null 'Genre: null' ausgegeben wird -> unschön:
 			
-				if ($genre) {
+			//	if ($genre) {
 					//entfernt die bindestriche die man bei urls benötigt (/dark-techno -> ergibt dark techno)
 					//$title = str_replace('-', ' ', $genre);
 					// macht das Selbe nur mehr, das ist eine Symfony Component und wertet das in Title um ausgabe (Anfangsbuchstaben Groß) nicht so wichtig aber gtn
 					// oben use statemant nicht vergessen
-					$title = 'Genre: '.u(str_replace('-', ' ', $genre))->title(true);
-				} else {
+			//		$title = 'Genre: '.u(str_replace('-', ' ', $genre))->title(true);
+/*				} else {
 					$title = 'All Genres';
-				}
+				}*/
+				$genre = $genre ? u(str_replace('-', ' ', $genre))->title(true) : null;
 			
-			return new Response($title);
+			//return new Response($title);
+			return $this->render('vinyl/browse.html.twig', ['genre' => $genre]);
 		}
 		
 		
@@ -62,7 +64,7 @@ use function Symfony\Component\String\u;
 		//Wenn Templates ausgegeben werden, dann muss was anderes verwendet werden als new Response();
 		//Siehe ausgabe es ist nicht new Response() sondern $this->render.
 		//
-		#[Route('/home')]
+		#[Route('/', name: 'app_homepage')]
 		public function homepage(): Response
 		{
 			// erstellen ein Tracks Array welches wir im Frontend ausgeben :)
@@ -75,13 +77,15 @@ use function Symfony\Component\String\u;
 			// erweitertes Array
 			
 			$songs = [
-			 ['song' => 'Gangsta\'s Paradise', 'artist' => 'Coolio'],
-			 ['song' => 'Waterfalls', 'artist' => 'TLC'],
-			 ['song' => 'Creep', 'artist' => 'Radiohead'],
-			 ['song' => 'Kiss from a Rose', 'artist' => 'Seal'],
-			 ['song' => 'On Bended Knee', 'artist' => 'Boyz II Men'],
-			 ['song' => 'Fantasy', 'artist' => 'Mariah Carey']
+			 ['title' => 'Gangsta\'s Paradise', 'artist' => 'Coolio'],
+			 ['title' => 'Waterfalls', 'artist' => 'TLC'],
+			 ['title' => 'Creep', 'artist' => 'Radiohead'],
+			 ['title' => 'Kiss from a Rose', 'artist' => 'Seal'],
+			 ['title' => 'On Bended Knee', 'artist' => 'Boyz II Men'],
+			 ['title' => 'Fantasy', 'artist' => 'Mariah Carey']
 			];
+			// wenn debug toolbar installiert wurde kann mit dd was ausgegeben werden z.b.:
+			//dd($songs);
 
 			
 			//1. Parameter ist immer das Template,

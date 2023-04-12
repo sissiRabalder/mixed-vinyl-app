@@ -1,0 +1,30 @@
+
+{% extends 'base.html.twig' %}
+{# nach extends immer block und endblock angeben sonst wird ein error ausgegekben #}
+{#
+{% block irgendeinname %}
+ kann auch angegeben werden, es muss dafür aber auch das selbe in der extends template stehen. Ansonsten scheint der Block nicht auf
+#}
+
+ {% block body %}
+{#
+  {{ dump() }} -> gibt alle variabeln aus die zur verfügung stehen
+	{{ dump(songs) }} -> gibt die variabel songs aus
+#}
+	
+	 <h1>{{ title }}</h1>
+	 <div>Our sweet track list: TODO</div>
+	 <div class="container">
+		 <ul>
+			 {% for track in tracks %}
+				 <li>{{ track }}</li>
+			 {% endfor %}
+		 </ul>
+		 <ul>
+			 {% for song in songs %}
+				 <li>{{ song.artist }}: {{ song.song }}</li>
+			 {% endfor %}
+		 </ul>
+	 </div>
+
+ {% endblock %}
