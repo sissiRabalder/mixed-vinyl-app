@@ -88,8 +88,8 @@ use function Symfony\Component\String\u;
 			//dd($songs);
 
 			
-			//1. Parameter ist immer das Template,
-			// 2.Parameter ist ein Array mit den variablen die an das Template übergeben werden sollen
+			// 1. Parameter ist immer das Template,
+			// 2. Parameter ist ein Array mit den variablen die an das Template übergeben werden sollen
 			return $this->render('vinyl/homepage.html.twig', [
 			 'title'  => 'PB & Jams',
 			 //hier wid das tracks-array an das frontend übergeben
