@@ -12,7 +12,7 @@
 	class SongController extends AbstractController
 	{
 		// mit methods stellt man fest dass nur die GET methode gilt
-		#[Route('/api/songs/{id<\d+>}', methods:['GET'])]
+		#[Route('/api/songs/{id<\d+>}', methods:['GET'], name: 'api_songs_get_one')]
 		public function getSong(int $id, LoggerInterface $logger): Response
 		{
 			// TODO query the database
